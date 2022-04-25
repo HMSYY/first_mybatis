@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.industry.dao.StudentDao">
+
+    <!--使用insert,update,delete,select标签写sql-->
+    <!--parametertype：告诉mybatis传入的参数是一个整型-->
+    <!--用全限定名称-->
+    <!--select id="selectById" parameterType="java.lang.Integer"
+            resultType="com.industry.domain.Student">
+        select id,name,email,age from student where id = #{studentId}
+    </select-->
+    <!--用mybatis的别名-->
+    <select id="selectById" parameterType="int"
+            resultType="com.industry.domain.Student">
+        select id,name,email,age from student where id = #{studentId}
+    </select>
+
+    <!--
+        dao接口是一个简单类型的参数
+        要使mapper文件获取这个参数，使用#{任意字符}
+    -->
+    <select id="selectByEmail" resultType="com.industry.domain.Student">
+        select id,name,email,age from student where email = #{studentEmail}
+    </select>
+
+    <!--
+       一个java对象作为方法的参数，使用对象的属性作为参数值使用
+       简单语法：#{属性名}，mybatis调用此属性的getXXX()方法获取属性值
+       以下是严格版！一般不用写java的类型名和jdbc类型名！！
+    -->
+    <select id="selectByObject" resultType="com.industry.domain.Student">
+        select id,name,email,age from student where
+        name = #{name,javaType = java.lang.String,jdbcType = VARCHAR}
+        or age = #{age,javaType = java.lang.Integer,jdbcType = INTEGER}
+    </select>
+
+    <!--用任意对象作为方法的参数-->
+    <select id="selectByQueryParam" resultType="com.industry.domain.Student">
+        select id,name,email,age from student where name = #{p1} or age = #{p2}
+    </select>
+
+    <!--
+       使用位置获取参数值，dao接口方法是多个简单类型的参数
+       语法：#{arg0}, #{arg1} ......
+    -->
+    <select id="selectByPosition" resultType="com.industry.domain.Student">
+        select id,name,email,age from student where name = #{arg0} or age = #{arg1}
+    </select>
+
+    <!--使用map传递参数-->
+    <select id="selectStudentByMap" resultType="com.industry.domain.Student">
+
+    </select>
+</mapper>
+
+

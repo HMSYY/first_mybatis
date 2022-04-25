@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.industry.dao.StudentDao">
+    <!--select id="selectBlog" resultType="Blog">
+        select * from Blog where id = #{id}
+    </select-->
+
+    <!--查询一个学生Student
+         <select>：表示查询操作，里面是select语句
+         id：要执行的sql语句的唯一标识，是一个自定义的字符串。
+             推荐使用dao接口中的方法名称
+         resultType：告诉mybatis，执行sql语句后，把数据赋值给哪个类型的java对象。
+                     resultType的值现在使用的是java对象(所属类)的全限定名称。
+    -->
+    <select id="selectStudentById" resultType="com.industry.domain.Student">
+        select id,name,email,age from student where id = #{studentId}
+    </select>
+
+    <!--添加一个insert-->
+    <!--insert id = "insertStudent">
+        insert into student values(1003,"李峰","232@qq.com",26)
+    </insert-->
+    
+    <!--用int insert(String var1, Object var2)方法插入一个对象-->
+    <insert id="insertStudent">
+        insert into student values(#{id},#{name},#{email},#{age})
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

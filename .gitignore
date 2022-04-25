@@ -1,0 +1,5 @@
+# Project exclude paths
+/Ch01-first/target/
+/Ch02-dao/target/
+/Ch03-proxy-dao/target/
+/Ch04-parameter/target/
